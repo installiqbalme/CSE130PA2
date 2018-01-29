@@ -38,7 +38,7 @@ foldRight = foldr
 -- 36
 
 sumList :: [Int] -> Int
-sumList xs = error "TBD:sumList"
+sumList xs = foldl' (+) 0 xs
 
 
 -- | `digitsOfInt n` should return `[]` if `n` is not positive,

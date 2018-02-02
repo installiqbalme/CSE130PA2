@@ -120,10 +120,7 @@ digitalRoot n =
 -- ["bicycle", "my", "ride", "to", "want", "i"]
 
 listReverse :: [a] -> [a]
-listReverse xs = error "TBD"
-	-- if xs == [] then []
-	-- else let x = xs[0] 
-		
+listReverse xs = foldr (\x y -> y ++ [x]) [] xs
 
 -- | In Haskell, a `String` is a simply a list of `Char`, that is:
 --
@@ -171,10 +168,10 @@ sqSum xs = foldLeft f base xs
 -- 24
 
 pipe :: [(a -> a)] -> (a -> a)
-pipe fs   = foldLeft f base fs
+pipe fs b = foldLeft f base fs
   where
-    f a x = error "TBD"
-    base  = error "TBD"
+    f a x = x a
+    base  = b
 
 -- | `sepConcat sep [s1,...,sn]` returns `s1 ++ sep ++ s2 ++ ... ++ sep ++ sn`
 --
@@ -280,7 +277,7 @@ bigAdd l1 l2     = removeZero res
 -- [8,9,9,9,1]
 
 mulByDigit :: Int -> BigInt -> BigInt
-mulByDigit i l = error "TBD"
+mulByDigit i l = error "TBiD"
 
 -- | `bigMul n1 n2` returns the `BigInt` representing the product of `n1` and `n2`.
 --

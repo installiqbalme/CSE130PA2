@@ -54,10 +54,8 @@ sumList xs = foldl' (+) 0 xs
 digitsOfInt :: Int -> [Int]
 digitsOfInt 0 = []
 digitsOfInt n =  
-  if n < 0
-    then []
-    else 
-		let x = [mod n 10]
+  if n < 0 then []
+    else let x = [mod n 10]
 		in let y = div n 10
 			in digitsOfInt y ++ x
 
@@ -91,7 +89,12 @@ digits n = digitsOfInt (abs n)
 -- 2
 
 additivePersistence :: Int -> Int
-additivePersistence n = error "TBD" 
+additivePersistence n =  
+	if n < 10 then 0
+	else let x = digitsOfInt n 
+		in let y = sumList x
+			in 1 + additivePersistence y
+
 
 -- | digitalRoot n is the digit obtained at the end of the sequence
 --   computing the additivePersistence
@@ -99,8 +102,11 @@ additivePersistence n = error "TBD"
 -- >>> digitalRoot 9876
 -- 3
 digitalRoot :: Int -> Int
-digitalRoot n = error "TBD"
-
+digitalRoot n = 
+	if n < 10 then n
+		else let x = digitsOfInt n
+			in let y = sumList x
+				in digitalRoot y
 
 -- | listReverse [x1,x2,...,xn] returns [xn,...,x2,x1]
 --
@@ -114,7 +120,7 @@ digitalRoot n = error "TBD"
 -- ["bicycle", "my", "ride", "to", "want", "i"]
 
 listReverse :: [a] -> [a]
-listReverse xs = error "TBD"
+listReverse xs = 
 
 -- | In Haskell, a `String` is a simply a list of `Char`, that is:
 --

@@ -57,7 +57,9 @@ digitsOfInt n =
   if n < 0
     then []
     else 
-
+		let x = [mod n 10]
+		in let y = div n 10
+			in digitsOfInt y ++ x
 
 -- | `digits n` returns the list of digits of `n`
 --

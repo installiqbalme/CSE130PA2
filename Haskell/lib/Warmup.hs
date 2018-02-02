@@ -104,9 +104,9 @@ additivePersistence n =
 digitalRoot :: Int -> Int
 digitalRoot n = 
 	if n < 10 then n
-		else let x = digitsOfInt n
-			in let y = sumList x
-				in digitalRoot y
+	else let x = digitsOfInt n
+		in let y = sumList x
+			in digitalRoot y
 
 -- | listReverse [x1,x2,...,xn] returns [xn,...,x2,x1]
 --
@@ -120,7 +120,10 @@ digitalRoot n =
 -- ["bicycle", "my", "ride", "to", "want", "i"]
 
 listReverse :: [a] -> [a]
-listReverse xs = 
+listReverse xs = error "TBD"
+	-- if xs == [] then []
+	-- else let x = xs[0] 
+		
 
 -- | In Haskell, a `String` is a simply a list of `Char`, that is:
 --
@@ -151,8 +154,8 @@ palindrome w = error "TBD"
 sqSum :: [Int] -> Int
 sqSum xs = foldLeft f base xs
   where
-   f a x = error "TBD: sqSum f"
-   base  = error "TBD: sqSum base"
+   f a x = a + x * x
+   base  = 0
 
 
 

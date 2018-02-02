@@ -53,10 +53,13 @@ sumList xs = foldl' (+) 0 xs
 
 digitsOfInt :: Int -> [Int]
 digitsOfInt 0 = []
-digitsOfInt n = error "TBD:digitsOfInt" 
+digitsOfInt n =  
+  if n < 0
+    then []
+    else 
 
 
--- | `digits n` retruns the list of digits of `n`
+-- | `digits n` returns the list of digits of `n`
 --
 -- >>> digits 31243
 -- [3,1,2,4,3]

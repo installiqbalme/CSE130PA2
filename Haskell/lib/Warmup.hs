@@ -166,6 +166,8 @@ sqSum xs = foldLeft f base xs
 -- >>> pipe [(\x -> x * 4), (\x -> x + x)] 3
 -- 24
 
+-- nnnnnnnnnnnnnnnnnnneeeeeeeeeeeeeeeeeeedddd to doooooooooooooooooooooooooooooo
+
 pipe :: [(a -> a)] -> (a -> a)
 pipe fs b = foldLeft f base fs
   where
@@ -187,9 +189,9 @@ sepConcat :: String -> [String] -> String
 sepConcat sep []    = ""
 sepConcat sep (h:t) = foldLeft f base l
   where
-    f a x           = error "TBD"
-    base            = error "TBD"
-    l               = error "TBD"
+    f a x           = if x == last (h:t) then a ++ x else a ++ x ++ sep
+    base            = []
+    l               = (h:t)
 
 
 intString :: Int -> String

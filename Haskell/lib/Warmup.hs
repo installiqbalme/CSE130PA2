@@ -236,7 +236,9 @@ type BigInt = [Int]
 -- [1,0,0,2] [0,0,9,9]
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
-padZero l1 l2 = error "TBD"
+padZero l1 l2  | length l1 > length l2 = padZero l1 ([0] ++ l2) 
+               | length l1 < length l2 = padZero ([0] ++ l1) l2
+               | length l1 == length l2 = (l1, l2)
 
 -- | `removeZero ds` strips out all leading `0` from the left-side of `ds`.
 --

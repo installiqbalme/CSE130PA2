@@ -134,8 +134,7 @@ listReverse xs = foldr (\x y -> y ++ [x]) [] xs
 -- False
 
 palindrome :: String -> Bool
-palindrome w = error "TBD"
-
+palindrome w = if w == listReverse w then True else False
 
 -- | sqSum [x1, ... , xn] should return (x1^2 + ... + xn^2)
 --

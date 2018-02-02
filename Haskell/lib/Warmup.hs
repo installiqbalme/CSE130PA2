@@ -212,10 +212,6 @@ intString = show
 stringOfList :: (a -> String) -> [a] -> String
 stringOfList f xs = let x = sepConcat ", " (foldl' (\y z -> y ++ [f z]) [] xs) in "[" ++ x ++ "]" 
 
--- let x = foldl' (\z y -> if y == [last xs] 
---	then z ++ (f y) 
---	else z ++ (f y) ++ ", ") "" xs 
-
 -- | `clone x n` returns a `[x,x,...,x]` containing `n` copies of `x`
 --
 -- >>> clone 3 5
@@ -225,7 +221,7 @@ stringOfList f xs = let x = sepConcat ", " (foldl' (\y z -> y ++ [f z]) [] xs) i
 -- ["foo", "foo"]
 
 clone :: a -> Int -> [a]
-clone x n = error "TBD"
+clone x n = if n > 1 then [x] ++ clone x (n - 1) else [x] 
 
 type BigInt = [Int]
 

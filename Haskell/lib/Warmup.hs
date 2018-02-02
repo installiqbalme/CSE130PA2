@@ -210,7 +210,11 @@ intString = show
 -- "[[1, 2, 3], [4, 5], [6], []]"
 
 stringOfList :: (a -> String) -> [a] -> String
-stringOfList f xs = error "TBD"
+stringOfList f xs = let x = sepConcat ", " (foldl' (\y z -> y ++ [f z]) [] xs) in "[" ++ x ++ "]" 
+
+-- let x = foldl' (\z y -> if y == [last xs] 
+--	then z ++ (f y) 
+--	else z ++ (f y) ++ ", ") "" xs 
 
 -- | `clone x n` returns a `[x,x,...,x]` containing `n` copies of `x`
 --

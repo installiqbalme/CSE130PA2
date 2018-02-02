@@ -251,9 +251,9 @@ padZero l1 l2  | length l1 > length l2 = padZero l1 ([0] ++ l2)
 -- >>> removeZero [0,0,0,0]
 -- []
 
+-- neeeeeeeed to dooooooooooooooooooo
 removeZero :: BigInt -> BigInt
-removeZero ds = error "TBD"
-
+removeZero ds = foldl' (\x y -> if y == 0 then 0) [] ds
 
 -- | `bigAdd n1 n2` returns the `BigInt` representing the sum of `n1` and `n2`.
 --

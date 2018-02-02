@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2018-01-28 23:03:04.9523407 UTC
+2018-02-02 10:48:54.2613911 UTC
 
 interface main@main:Main 8002
-  interface hash: 755d7f2c932eff4140afa87ecfb3b458
+  interface hash: 8f148a963216f186f772b9e3a9908cf4
   ABI hash: d4788bcb4d69a6f27d1176ec29108691
   export-list hash: 71ed1cb06557264e997fe24efe2f4544
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -93,7 +93,7 @@ import  -/  tasty-0.11.2.5@tasty-0.11.2.5-DsznIQRiq3xEap5fKV5NKb:Test.Tasty 90d1
 import  -/  tasty-0.11.2.5@tasty-0.11.2.5-DsznIQRiq3xEap5fKV5NKb:Test.Tasty.Core cf2a566e08c43324afeffaf32a0f0bee
 import  -/  tasty-hunit-0.9.2@tasty-hunit-0.9.2-CS37NrgTYZQEuJLm24EcI0:Test.Tasty.HUnit 1d97c8da87c8e3dafa216020a5bd75c9
 import  -/  tasty-hunit-0.9.2@tasty-hunit-0.9.2-CS37NrgTYZQEuJLm24EcI0:Test.Tasty.HUnit.Orig c7c0b079f32d52a25c582957df1e11ee
-import  -/  warmup-pa2-0.1.0.0@warmup-pa2-0.1.0.0-EAWwJxUaxr0Fa7RP7mdefI:Warmup 3164a3fc1d33638c6bf558d180e78ed7
+import  -/  warmup-pa2-0.1.0.0@warmup-pa2-0.1.0.0-EAWwJxUaxr0Fa7RP7mdefI:Warmup 1fae5af0f4c72d61d24aba05ab7aceda
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,

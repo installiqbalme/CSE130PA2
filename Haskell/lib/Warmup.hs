@@ -267,9 +267,12 @@ bigAdd l1 l2     = removeZero res
   where
     (l1', l2')               = padZero l1 l2
     (_  , res)               = foldRight f base args
-    f (x1, x2) (carry, sum)  = error "TBD"
-    base                     = error "TBD"
-    args                     = error "TBD"
+    f (x1, x2) (carry, sum)  = let z = x1 + x2 + head carry in ([div z 10], 
+        if ((x1 == head l1' && x2 == head l2') && length sum == (length l1') - 1) 
+			then [div z 10, mod z 10] ++ sum 
+			else [mod z 10] ++ sum)
+    base                     = ([0],[])
+    args                     = zip l1' l2'
 
 
 -- | `mulByDigit i n` returns the result of multiplying
@@ -279,7 +282,7 @@ bigAdd l1 l2     = removeZero res
 -- [8,9,9,9,1]
 
 mulByDigit :: Int -> BigInt -> BigInt
-mulByDigit i l = error "TBiD"
+mulByDigit i l = error "TBD" -- mod (i * y) 10 in foldr (\x y -> [z] ++ x) [] l
 
 -- | `bigMul n1 n2` returns the `BigInt` representing the product of `n1` and `n2`.
 --

@@ -53,11 +53,9 @@ sumList xs = foldl' (+) 0 xs
 
 digitsOfInt :: Int -> [Int]
 digitsOfInt 0 = []
-digitsOfInt n =  
-  if n < 0 then []
-    else let x = [mod n 10]
-		in let y = div n 10
-			in digitsOfInt y ++ x
+digitsOfInt n = if n < 0 
+then [] 
+else (digitsOfInt (div n 10)) ++ [mod n 10]
 
 -- | `digits n` returns the list of digits of `n`
 --
@@ -89,11 +87,9 @@ digits n = digitsOfInt (abs n)
 -- 2
 
 additivePersistence :: Int -> Int
-additivePersistence n =  
-	if n < 10 then 0
-	else let x = digitsOfInt n 
-		in let y = sumList x
-			in 1 + additivePersistence y
+additivePersistence n = if n < 10 
+then 0 
+else 1 + additivePersistence (sumList (digitsOfInt n))
 
 
 -- | digitalRoot n is the digit obtained at the end of the sequence
@@ -102,11 +98,9 @@ additivePersistence n =
 -- >>> digitalRoot 9876
 -- 3
 digitalRoot :: Int -> Int
-digitalRoot n = 
-	if n < 10 then n
-	else let x = digitsOfInt n
-		in let y = sumList x
-			in digitalRoot y
+digitalRoot n = if n < 10 
+then n 
+else digitalRoot (sumList (digitsOfInt n))
 
 -- | listReverse [x1,x2,...,xn] returns [xn,...,x2,x1]
 --
@@ -153,8 +147,6 @@ sqSum xs = foldLeft f base xs
    f a x = a + x * x
    base  = 0
 
-
-
 -- | `pipe [f1,...,fn] x` should return `f1(f2(...(fn x)))`
 --
 -- >>> pipe [] 3
@@ -189,7 +181,7 @@ sepConcat :: String -> [String] -> String
 sepConcat sep []    = ""
 sepConcat sep (h:t) = foldLeft f base l
   where
-    f a x           = if x == last (h:t) then a ++ x else a ++ x ++ sep
+    f a x = if x == h then x else a ++ sep ++ x
     base            = []
     l               = (h:t)
 
@@ -210,7 +202,8 @@ intString = show
 -- "[[1, 2, 3], [4, 5], [6], []]"
 
 stringOfList :: (a -> String) -> [a] -> String
-stringOfList f xs = let x = sepConcat ", " (foldl' (\y z -> y ++ [f z]) [] xs) in "[" ++ x ++ "]" 
+stringOfList f xs = let x = sepConcat ", " (foldl' (\y z -> y ++ [f z]) [] xs) 
+	in "[" ++ x ++ "]" 
 
 -- | `clone x n` returns a `[x,x,...,x]` containing `n` copies of `x`
 --
@@ -268,7 +261,7 @@ bigAdd l1 l2     = removeZero res
     (l1', l2')               = padZero l1 l2
     (_  , res)               = foldRight f base args
     f (x1, x2) (carry, sum)  = let z = x1 + x2 + head carry in ([div z 10], 
-        if ((x1 == head l1' && x2 == head l2') && length sum == (length l1') - 1) 
+        if length sum == (length l1') - 1 
 			then [div z 10, mod z 10] ++ sum 
 			else [mod z 10] ++ sum)
     base                     = ([0],[])

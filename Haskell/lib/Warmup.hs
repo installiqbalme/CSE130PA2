@@ -157,11 +157,11 @@ sqSum xs = foldLeft f base xs
 --
 -- >>> pipe [(\x -> x * 4), (\x -> x + x)] 3
 -- 24
---stil need to doooooooooooooooooooooooooooo
+-- stil need to doooooooooooooooooooooooooooo
 pipe :: [(a -> a)] -> (a -> a)
 pipe fs b = foldLeft f base fs
   where
-    f a x = x a
+    f a x = x a 
     base  = b
 
 -- | `sepConcat sep [s1,...,sn]` returns `s1 ++ sep ++ s2 ++ ... ++ sep ++ sn`

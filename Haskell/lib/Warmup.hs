@@ -296,6 +296,6 @@ bigMul :: BigInt -> BigInt -> BigInt
 bigMul l1 l2 = res
   where
     (_, res)   = foldRight f base args
-    f x (z, p) = (0, bigAdd p (mulByDigit x l1))
-    base       = (0,[0])
+    f x (z, p) = (z ++ [0], bigAdd p ((mulByDigit x l1 ++ z)))
+    base       = ([],[])
     args       = l2

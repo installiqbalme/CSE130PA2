@@ -157,11 +157,11 @@ sqSum xs = foldLeft f base xs
 --
 -- >>> pipe [(\x -> x * 4), (\x -> x + x)] 3
 -- 24
--- stil need to doooooooooooooooooooooooooooo
+
 pipe :: [(a -> a)] -> (a -> a)
 pipe fs b = foldLeft f base fs
   where
-    f a x = x a 
+    f a x = foldr (\x y -> x y) b fs
     base  = b
 
 -- | `sepConcat sep [s1,...,sn]` returns `s1 ++ sep ++ s2 ++ ... ++ sep ++ sn`
@@ -293,12 +293,9 @@ mulByDigit i l = removeZero res
 -- [9,9,9,9,8,0,0,0,0,1]
 
 bigMul :: BigInt -> BigInt -> BigInt
-bigMul l1 l2 = [] --res
---  where
---    (_, res)   = foldRight f base args
---    f x (z, p) = foldr 
-
---mulByDigit 
-
- --   base       = [0]
---    args       = (0, l2)
+bigMul l1 l2 = res
+  where
+    (_, res)   = foldRight f base args
+    f x (z, p) = (0, bigAdd p (mulByDigit x l1))
+    base       = (0,[0])
+    args       = l2

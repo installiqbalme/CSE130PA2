@@ -144,7 +144,7 @@ palindrome w = if w == listReverse w then True else False
 sqSum :: [Int] -> Int
 sqSum xs = foldLeft f base xs
   where
-   f a x = a + x * x
+   f a x = a + (x * x)
    base  = 0
 
 -- | `pipe [f1,...,fn] x` should return `f1(f2(...(fn x)))`

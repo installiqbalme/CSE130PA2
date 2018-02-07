@@ -157,9 +157,7 @@ sqSum xs = foldLeft f base xs
 --
 -- >>> pipe [(\x -> x * 4), (\x -> x + x)] 3
 -- 24
-
--- nnnnnnnnnnnnnnnnnnneeeeeeeeeeeeeeeeeeedddd to doooooooooooooooooooooooooooooo
-
+--stil need to doooooooooooooooooooooooooooo
 pipe :: [(a -> a)] -> (a -> a)
 pipe fs b = foldLeft f base fs
   where
@@ -181,10 +179,9 @@ sepConcat :: String -> [String] -> String
 sepConcat sep []    = ""
 sepConcat sep (h:t) = foldLeft f base l
   where
-    f a x = if x == h then x else a ++ sep ++ x
-    base            = []
+    f a x = if a == "Romel Acosta" then "" ++ x else a ++ sep ++ x 
+    base            = "Romel Acosta"
     l               = (h:t)
-
 
 intString :: Int -> String
 intString = show
@@ -203,7 +200,7 @@ intString = show
 
 stringOfList :: (a -> String) -> [a] -> String
 stringOfList f xs = let x = sepConcat ", " (foldl' (\y z -> y ++ [f z]) [] xs) 
-	in "[" ++ x ++ "]" 
+    in "[" ++ x ++ "]" 
 
 -- | `clone x n` returns a `[x,x,...,x]` containing `n` copies of `x`
 --
@@ -260,11 +257,11 @@ bigAdd l1 l2     = removeZero res
   where
     (l1', l2')               = padZero l1 l2
     (_  , res)               = foldRight f base args
-    f (x1, x2) (carry, sum)  = let z = x1 + x2 + head carry in ([div z 10], 
+    f (x1, x2) (carry, sum)  = let z = x1 + x2 + carry in (div z 10, 
         if length sum == (length l1') - 1 
-			then [div z 10, mod z 10] ++ sum 
-			else [mod z 10] ++ sum)
-    base                     = ([0],[])
+            then [div z 10, mod z 10] ++ sum 
+            else [mod z 10] ++ sum)
+    base                     = (0,[])
     args                     = zip l1' l2'
 
 
@@ -275,7 +272,17 @@ bigAdd l1 l2     = removeZero res
 -- [8,9,9,9,1]
 
 mulByDigit :: Int -> BigInt -> BigInt
-mulByDigit i l = error "TBD" -- mod (i * y) 10 in foldr (\x y -> [z] ++ x) [] l
+mulByDigit i l = removeZero res
+  where
+    (_, res) = foldr f base ls
+    f x (carry, product) = let z = i * x + carry in (div z 10,
+        if length product == (length l) - 1
+            then (if div z 10 /= 0 
+                then [div z 10, mod z 10] ++ product 
+                else [mod z 10] ++ product)
+            else [mod z 10] ++ product)
+    base = (0, [])
+    ls = l
 
 -- | `bigMul n1 n2` returns the `BigInt` representing the product of `n1` and `n2`.
 --
@@ -286,9 +293,12 @@ mulByDigit i l = error "TBD" -- mod (i * y) 10 in foldr (\x y -> [z] ++ x) [] l
 -- [9,9,9,9,8,0,0,0,0,1]
 
 bigMul :: BigInt -> BigInt -> BigInt
-bigMul l1 l2 = res
-  where
-    (_, res)   = foldRight f base args
-    f x (z, p) = error "TBD"
-    base       = error "TBD"
-    args       = error "TBD"
+bigMul l1 l2 = [] --res
+--  where
+--    (_, res)   = foldRight f base args
+--    f x (z, p) = foldr 
+
+--mulByDigit 
+
+ --   base       = [0]
+--    args       = (0, l2)

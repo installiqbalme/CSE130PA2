@@ -118,7 +118,7 @@ console.log(take(10, repeat(2)));
 function enumFrom(n) {
   return delay(function() {
     return {
-      head: n+1,
+      head: n,
       tail: enumFrom(n+1)
     };
   });
@@ -126,6 +126,7 @@ function enumFrom(n) {
 
 console.log("== TEST: enumFrom ==");
 console.log(take(5, enumFrom(2)));
+console.log(take(10, enumFrom(2)));
 
 // Question 3 (5pts):
 // map accepts a function f and an stream [x_0, x_1, ....]
